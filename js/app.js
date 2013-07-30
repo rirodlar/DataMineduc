@@ -3,11 +3,9 @@
 * @property {object} collections - Colecciones de entidades (Clases e instancias).	
 * @property {object} models - Colecciones de entidades (Clases e instancias).	
 * @property {object} views - Colecciones de entidades (Clases e instancias).	
-* @property {object} views.sessionManager - Manejador de sesiones.	
 * @property {object} views.mainView - Controlador proncipal de las vistas y datos.	
 * @property {object} router - Manejador de rutas - urls.	
-* @property {object} mainRef - Referencia principal al almacenamiento de datos de Firebase.	
-* @property {object} participant_id - Identificador del participante.	
+
 */
 window.App = {
 	models : {},
