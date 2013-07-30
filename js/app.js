@@ -4,6 +4,8 @@
 * @property {object} models - Colecciones de entidades (Clases e instancias).	
 * @property {object} views - Colecciones de entidades (Clases e instancias).	
 * @property {object} views.mainView - Controlador proncipal de las vistas y datos.	
+* @property {object} views.MenuSeccionesView - Controlador proncipal de las vistas y datos.	
+
 * @property {object} router - Manejador de rutas - urls.	
 
 */
@@ -136,5 +138,65 @@ App.views.MenuSeccionesView = Backbone.View.extend({
 		$("#catalogoVisualizadores").addClass("btn-primary");
 
 	}
+
+})
+
+// VISTAS
+// ======
+/**
+* Maneja contenido del SIDEDAR
+*/
+App.views.SideBarView = Backbone.View.extend({
+	
+	initialize : function() {
+		console.log("SideBarView");
+		this.template = _.template($("#template_SideBarView").html())
+		this.listenTo(this.collection, "change", this.render);
+		this.listenTo(this.collection, "sync", this.render);
+
+		this.render()
+	},
+	
+	render: function() {
+		
+		this.$el.html(this.template());
+		var $list = this.$el.find(".bs-sidenav");
+
+		this.collection.each(function(item) {
+			var itemView = new App.views.SideBarItemView({model: item});
+			$list.append(itemView.render().$el);
+		})
+
+		return this;
+	}
+
+})
+
+App.views.SideBarItemView = Backbone.View.extend({
+	tagName :"li",
+
+	initialize : function() {
+		console.log("SideBarItemView");
+	
+		this.template = _.template($("#template_SideBarItemView").html())
+		this.render()
+	},
+	events:{
+		"click a.active": "activarLi"
+	},
+
+	activarLi:function(e){
+		alert("LI");
+	},
+
+	render: function() {
+		var data = this.model.toJSON();
+
+		this.$el.html(this.template(data));
+
+		var $list = this.$el.find(".bs-sidenav");
+
+		return this;
+}
 
 })
