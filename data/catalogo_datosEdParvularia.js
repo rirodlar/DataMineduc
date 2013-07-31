@@ -3,7 +3,7 @@
 	"titulo": "Nivel Asistencia",
 	"descripcion": "Contiene indicadores para asistencia promedio y matrícula promedio en el año (para estudiantes en Educación Parvularia, Enseñanza Básica de Niños y Enseñanza Media de Jóvenes). Cada fila de la tabla corresponde a un Año/Nivel de enseñanza de cada Establecimiento (Ej Enseñanza Media TP).",
 	"fuente": "Gestión de Datos, Mineduc",
-	"actuaizacion" : "20 Julio 2013",
+	"actualizacion" : "20 Julio 2013",
 	"vigencia": "Hasta Enero de 2014",
 	"etiqueta_categoria" : "Anio",
 	"datos":[
@@ -43,7 +43,8 @@
 			}
 		]
 		},
-		{"año": "2011",
+		{"categoria": "2013",
+		"tamagno": "5 Mb",
 		"links": [
 			{
 				"tipo":"csv",

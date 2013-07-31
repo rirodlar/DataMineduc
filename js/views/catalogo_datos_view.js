@@ -1,23 +1,16 @@
-// VISTAS CATALOGO DATOS
-// =====================
-
-// App.views.CatalogoDatosMainView = Backbone.View.extend({
-// 	initialize : function() {
-// 		App.views.catalogoDatosListViewEdEscolar = new App.views.CatalogoDatosListView({collection:App.collections.coleccionDatosEdEscolar});
-// 		App.views.catalogoDatosListViewEdSuperior = new App.views.CatalogoDatosListView({collection:App.collections.coleccionDatosEdSuperior});
-// 		App.views.catalogoDatosListViewEdParvularia = new App.views.CatalogoDatosListView({collection:App.collections.coleccionDatosEdParvularia});
-// 		// App.views.catalogoVisualizadoresListView = new App.views.CatalogoVisualizadoresListView({collection:App.collections.coleccionVisualizadores});
-// 	}
-
-// });
 
 
-
-
-/**
-* Maneja lista de Datos
-*/
-App.views.CatalogoDatosListView = Backbone.View.extend({
+App.views.CatalogoDatosListView = Backbone.View.extend(
+/** @lends CatalogoDatosListView.prototype */
+{	
+	/**
+	* @class CatalogoDatosListView Maneja lista de Datos
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template principal de la vista.		* 
+	* CatalogoDatosListView genera el template respectivo
+	*/
 	initialize : function() {
 		console.log("CatalogoDatosListView");
 		this.template = _.template($("#template_CatalogoDatosListView").html())
@@ -29,7 +22,11 @@ App.views.CatalogoDatosListView = Backbone.View.extend({
 
 		this.render()
 	},
-
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render: function() {
 
 		this.$el.html(this.template());
@@ -49,17 +46,28 @@ App.views.CatalogoDatosListView = Backbone.View.extend({
 
 })
 
-/**
-* Maneja un elemento de datos
-*/
-App.views.CatalogoDatosItemView = Backbone.View.extend({
-	tagName :"li",
 
+App.views.CatalogoDatosItemView = Backbone.View.extend(
+/** @lends CatalogoDatosItemView.prototype */
+{
+	/** li -  elemento generado por esta vista */
+	tagName :"li",
+	/**
+	* @class CatalogoDatosItemView Maneja un elemento de datos
+	*
+	* @augments Backbone.View
+	* @constructs
+	*
+	*/
 	initialize : function() {
 		this.template = _.template($("#template_CatalogoDatosItemView").html())
 		this.render()
 	},
-
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render: function() {
 		var data = this.model.toJSON();
 		console.log(data);
@@ -79,18 +87,30 @@ App.views.CatalogoDatosItemView = Backbone.View.extend({
 
 })
 
-/**
-* Maneja una fila de datos correspondiente a un año
-*/
-//cambiar por catego
-App.views.CatalogoDatosCategoriaItemView = Backbone.View.extend({
-	tagName :"tr",
 
+App.views.CatalogoDatosCategoriaItemView = Backbone.View.extend(
+/** @lends CatalogoDatosItemView.prototype */
+{
+	/** tr -  elemento generado por esta vista */
+	tagName :"tr",
+	/**
+	* @class CatalogoDatosCategoriaItemView Maneja una fila de datos correspondiente a una catagoria (Ej: año, meses)
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template que maneja las filas de una categoria
+	* 
+	* CatalogoDatosCategoriaItemView genera el template respectivo
+	*/
 	initialize : function() {
 		this.template = _.template($("#template_CatalogoDatosCategoriaItemView").html())
 		this.render()
 	},
-
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render: function() {
 		var data = this.model.toJSON();
 		this.$el.html(this.template(data));
@@ -108,18 +128,31 @@ App.views.CatalogoDatosCategoriaItemView = Backbone.View.extend({
 
 })
 
-/**
-* Maneja una fila de datos correspondiente a un formato (ej. xls, csv)
-*/
+
 App.views.CatalogoDatosFormatoItemView = Backbone.View.extend({
+	/** DIV -  elemento generado por esta vista */
 	tagName :"div",
 	className : "col-lg-1",
+
+	/**
+	* @class CatalogoDatosFormatoItemView Maneja una fila de datos correspondiente a un formato (ej. xls, csv)
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template donde se añade los los formatos ( XLS; CSV)	
+	* 
+	* CatalogoDatosFormatoItemView genera el template respectivo
+	*/
 
 	initialize : function() {
 		this.template = _.template($("#template_CatalogoDatosFormatoItemView").html())
 		this.render()
 	},
-
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render: function() {
 		var data = this.model.toJSON();
 		this.$el.html(this.template(data));

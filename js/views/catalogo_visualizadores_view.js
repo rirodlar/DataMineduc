@@ -1,11 +1,14 @@
-// VISTAS CATALOGO VISUALIZADORES
-// =====================
-
-/**
-* Maneja lista de Datos
-*/
-
-App.views.CatalogoVisualizadoresListView = Backbone.View.extend({
+App.views.CatalogoVisualizadoresListView = Backbone.View.extend(
+/** @lends CatalogoVisualizadoresListView.prototype */
+{	
+	/**
+	* @class CatalogoVisualizadoresListView Controla los datos  y las vistas relacionadas relacionadas para mostrar los elementos del catalogo
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template principal de la vista (sidebar + catalogo)		* 
+	* CatalogoVisualizadoresListView genera el template respectivo
+	*/
 	initialize : function() {
 		this.template = _.template($("#template_CatalogoVisualizadoresListView").html())
 
@@ -17,7 +20,11 @@ App.views.CatalogoVisualizadoresListView = Backbone.View.extend({
 
 		this.render()
 	},
-
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render: function() {
 		this.$el.html(this.template());
 
@@ -36,25 +43,36 @@ App.views.CatalogoVisualizadoresListView = Backbone.View.extend({
 
 })
 
-/**
-* Maneja un elemento de datos
-*/
-App.views.CatalogoVisualizadoresCategoriaView = Backbone.View.extend({
-	tagName :"li",
 
+App.views.CatalogoVisualizadoresCategoriaView = Backbone.View.extend(
+/** @lends MainView.prototype */
+{
+	/** li -  elemento generado por esta vista */
+	tagName :"li",
+	/**
+	* @class CatalogoVisualizadoresCategoriaView Maneja un Item de una catagoria
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template principal de la vista.	
+	* 
+	* CatalogoVisualizadoresCategoriaView genera el template respectivo
+	*/
 	initialize : function() {
 		this.template = _.template($("#template_CatalogoVisualizadoresCategoriaView").html())
 		
 
 		this.render()
 	},
-
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render: function() {
 		var data = this.model.toJSON();
 		
 		this.$el.html(this.template(data));
 
-		
 
 		var $list = this.$el.find(".list.visualizador");
 
@@ -70,13 +88,19 @@ App.views.CatalogoVisualizadoresCategoriaView = Backbone.View.extend({
 
 })
 
-/**
-* Maneja una fila de datos correspondiente a un año
-*/
+
 App.views.CatalogoVisualizadoresItemView = Backbone.View.extend({
+	/** DIV -  elemento generado por esta vista */
 	tagName :"div",
 	className : "col-lg-2",
-
+	/**
+	* @class CatalogoVisualizadoresItemView Maneja un item ( a > img.thumbnails )
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template principal de la vista.	
+	* CatalogoVisualizadoresItemView genera el template respectivo
+	*/
 	initialize : function() {
 		this.template = _.template($("#template_viewsCatalogoVisualizadoresItemView").html())
 		this.render()
@@ -85,6 +109,10 @@ App.views.CatalogoVisualizadoresItemView = Backbone.View.extend({
 		"click a.windowIframe": "openIframe"
 		
 	},
+	/**
+	* Levanta una ventana Emergente dependiendo del elemento seleccionado( el contenido es una iframe)
+	*
+	*/
 	openIframe: function(e){
 
 		var frameSrc = $(e.target).attr("alt");
@@ -95,7 +123,11 @@ App.views.CatalogoVisualizadoresItemView = Backbone.View.extend({
 		
 	    $('#myModal').modal({show:true})
 	},
-
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render: function() {
 		var data = this.model.toJSON();
 		this.$el.html(this.template(data));

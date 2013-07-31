@@ -4,8 +4,8 @@
 * @property {object} models - Colecciones de entidades (Clases e instancias).	
 * @property {object} views - Colecciones de entidades (Clases e instancias).	
 * @property {object} views.mainView - Controlador proncipal de las vistas y datos.	
-* @property {object} views.MenuSeccionesView - Controlador proncipal de las vistas y datos.	
-
+* @property {object} views.MenuSeccionesView - Manejador de vista de las seccione(vatalogo de datos y catalogo de visualizadores)	
+* @property {object} views.SideBarView - Menejador de Vista Sidebar ( menu)	
 * @property {object} router - Manejador de rutas - urls.	
 
 */
@@ -38,16 +38,31 @@ $().ready(function() {
 	Backbone.history.start();
 
 
-	$('#tabs').tab();//activacion de los TAB (Ed. Escolar,Ed. Superior,Ed. Parvularia)
-	$(".catalogo_visualizadores").hide() //ocultar el catalogo de visualizadores
+	//$('#tabs').tab();//activacion de los TAB (Ed. Escolar,Ed. Superior,Ed. Parvularia)
+	//$(".catalogo_visualizadores").hide() //ocultar el catalogo de visualizadores
 
-	
+	//App.views.mainView.hideCatalogoVisualizadores();
 	
 
 
 });
 
-App.views.MainView = Backbone.View.extend({
+App.views.MainView = Backbone.View.extend(
+/** @lends MainView.prototype */
+{
+	/** DIV -  elemento generado por esta vista */
+	tagName: "div",
+	
+	/**
+	* @class MainView Controla datos y vistas relacionadas con los catalogos
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template principal de la vista.	
+	* @property {String} this.quizSession - Modelo con datos de la sesión de preguntas .	
+	* 
+	* MainView genera el template respectivo
+	*/
 	initialize : function() {
 		console.log("App.views.MainView");
 		this.template = _.template($("#template_MainView").html());
@@ -60,10 +75,15 @@ App.views.MainView = Backbone.View.extend({
 		 App.views.catalogoDatosListViewEdParvularia = new App.views.CatalogoDatosListView({collection:App.collections.coleccionDatosEdParvularia});
 		 App.views.catalogoVisualizadoresListView = new App.views.CatalogoVisualizadoresListView({collection:App.collections.coleccionVisualizadores});
 
-		this.listenTo(App.views.menuSeccionesView, "catalogo:selectDatos", this.showCatalogoDatos);
-		this.listenTo(App.views.menuSeccionesView, "catalogo:selectVisualizadores", this.showCatalogoVisualizadores);
+		 this.listenTo(App.views.menuSeccionesView, "catalogo:selectDatos", this.showCatalogoDatos);
+		 this.listenTo(App.views.menuSeccionesView, "catalogo:selectVisualizadores", this.showCatalogoVisualizadores);
 	},
-
+	
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render : function() {
 		this.$el.html(this.template());
 		this.$el.find("div.menu.secciones").html(App.views.menuSeccionesView.$el);
@@ -75,13 +95,17 @@ App.views.MainView = Backbone.View.extend({
 		this.$el.find(".catalogo_visualizadores").hide() //ocultar el catalogo de visualizadores
 		return this;
 	},
-
+	/**
+	* Muestra el catalogo de datos, ocultar el catalogo de visualizadores
+	*/
 	showCatalogoDatos : function() {
 		this.$el.find(".seccion.catalogo_datos").show()
 		this.$el.find(".seccion.catalogo_visualizadores").hide()
 		App.views.menuSeccionesView.setDatos();
 	},
-
+	/**
+	* Muestra el catalogo de visualizadores y oculta el catalogo de datos
+	*/
 	showCatalogoVisualizadores : function() {
 		this.$el.find(".seccion.catalogo_datos").hide()
 		this.$el.find(".seccion.catalogo_visualizadores").show()
@@ -107,7 +131,7 @@ App.views.MenuSeccionesView = Backbone.View.extend({
 	},
 	selectCatalogo:function(e){
 		var opcion  = $(e.target).attr("id");
-		if	(opcion =="catalogoDatos") {
+		if	(opcion == "catalogoDatos") {
 			this.trigger("catalogo:selectDatos");
 			this.setDatos();
 		}else{
@@ -135,7 +159,7 @@ App.views.MenuSeccionesView = Backbone.View.extend({
 	setVisualizadores : function() {
 		$("#catalogoDatos").removeClass("btn-primary");
 		$("#catalogoDatos").addClass("btn-default");
-		$("#catalogoVisualizadores").addClass("btn-primary");
+	    $("#catalogoVisualizadores").addClass("btn-primary");
 
 	}
 

@@ -23,7 +23,7 @@
 		]
 },
 {
-	"titulo": "Rendimiento Escolar - SIMCE - PSU (Al 16 de Mayo del 2013)",
+	"titulo": "Rendimiento Escolar - SIMCE - PSU",
 
 		
 		"datos": [
