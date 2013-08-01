@@ -646,3 +646,10 @@
      width:50%;
     height:50%;
   }
+
+.bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a {
+  font-weight: bold;
+  color: #2a6496;
+  background-color: transparent;
+  border-right: 1px solid #563d7c;
+}

@@ -42,7 +42,6 @@ $().ready(function() {
 	//$(".catalogo_visualizadores").hide() //ocultar el catalogo de visualizadores
 
 	//App.views.mainView.hideCatalogoVisualizadores();
-	
 
 
 });
@@ -52,7 +51,7 @@ App.views.MainView = Backbone.View.extend(
 {
 	/** DIV -  elemento generado por esta vista */
 	tagName: "div",
-	
+
 	/**
 	* @class MainView Controla datos y vistas relacionadas con los catalogos
 	*
@@ -119,7 +118,17 @@ App.views.MainView = Backbone.View.extend(
 /**
 * Maneja contenido de menu de secciones
 */
-App.views.MenuSeccionesView = Backbone.View.extend({
+App.views.MenuSeccionesView = Backbone.View.extend(
+/** @lends MenuSeccionesView.prototype */
+{
+	/**
+	* @class MenuSeccionesView Controla datos y vistas relacionadas con los 2 catalogos
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template principal de la vista.		* 
+	* MenuSeccionesView genera el template respectivo
+	*/
 	initialize : function() {
 		this.template = _.template($("#template_menu_secciones").html())
 
@@ -132,10 +141,17 @@ App.views.MenuSeccionesView = Backbone.View.extend({
 	selectCatalogo:function(e){
 		var opcion  = $(e.target).attr("id");
 		if	(opcion == "catalogoDatos") {
+			/**
+			 * Evento selectDatos
+			 * @event MenuSeccionesView#selectDatos
+			 */
 			this.trigger("catalogo:selectDatos");
 			this.setDatos();
 		}else{
-
+			/**
+			 * Evento selectVisualizadores
+			 * @event MenuSeccionesView#selectVisualizadores
+			 */
 			this.trigger("catalogo:selectVisualizadores");
 			this.setVisualizadores();
 		}
@@ -146,7 +162,9 @@ App.views.MenuSeccionesView = Backbone.View.extend({
 
 		return this;
 	},
-
+	/**
+	* Cambiar esta estado de los botones de los 2 catalogos, destaca el catalogo de datos
+	*/
 	setDatos : function() {
 		$("#catalogoDatos").addClass("btn-primary");
 		$("#catalogoVisualizadores").addClass("btn-default");
@@ -155,7 +173,9 @@ App.views.MenuSeccionesView = Backbone.View.extend({
 		
 
 	},
-
+	/**
+	* Cambiar esta estado de los botones de los 2 catalogos, destaca el catalogo de visualizadores
+	*/
 	setVisualizadores : function() {
 		$("#catalogoDatos").removeClass("btn-primary");
 		$("#catalogoDatos").addClass("btn-default");
@@ -170,8 +190,17 @@ App.views.MenuSeccionesView = Backbone.View.extend({
 /**
 * Maneja contenido del SIDEDAR
 */
-App.views.SideBarView = Backbone.View.extend({
-	
+App.views.SideBarView = Backbone.View.extend(
+/** @lends MenuSeccionesView.prototype */
+{
+	/**
+	* @class SideBarView Controla datos y vistas relacionadas con los 2 catalogos
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template principal de la vista.		* 
+	* SideBarView genera el template respectivo
+	*/
 	initialize : function() {
 		console.log("SideBarView");
 		this.template = _.template($("#template_SideBarView").html())
@@ -180,7 +209,7 @@ App.views.SideBarView = Backbone.View.extend({
 
 		this.render()
 	},
-	
+
 	render: function() {
 		
 		this.$el.html(this.template());
@@ -197,22 +226,37 @@ App.views.SideBarView = Backbone.View.extend({
 })
 
 App.views.SideBarItemView = Backbone.View.extend({
+	/** li -  elemento generado por esta vista */
 	tagName :"li",
-
+	/**
+	* @class SideBarView Controla datos y vistas relacionadas con los 2 catalogos
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template principal de la vista.		* 
+	* SideBarView genera el template respectivo
+	*/
 	initialize : function() {
 		console.log("SideBarItemView");
 	
 		this.template = _.template($("#template_SideBarItemView").html())
 		this.render()
 	},
-	events:{
-		"click a.active": "activarLi"
+	events: {
+		  //'click':'doSomething'
+		  "click  a": "doSomething"
+		
 	},
+	doSomething: function(){
 
-	activarLi:function(e){
-		alert("LI");
+		console.log("doSomething");
 	},
-
+	
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
 	render: function() {
 		var data = this.model.toJSON();
 
@@ -224,3 +268,33 @@ App.views.SideBarItemView = Backbone.View.extend({
 }
 
 })
+
+
+// App.views.SideBarItemView = Backbone.View.extend({
+//     tagName: 'li',
+ 
+//     initialize : function() {
+//  		console.log("SideBarItemView");
+	
+//  		this.template = _.template($("#template_SideBarItemView").html())
+//  		this.render()
+//  	},
+//     events: {
+//      'click' : 'showAlert'
+
+//     },
+
+//     showAlert: function(){
+//         alert("You clicked me");
+//     },
+
+//     render: function(){
+//      var data = this.model.toJSON();
+
+// 		this.$el.html(this.template(data));
+
+//  		var $list = this.$el.find(".bs-sidenav");
+
+//  		return this;
+//     }
+// });
