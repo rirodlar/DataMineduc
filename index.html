@@ -82,7 +82,7 @@
 				</div>
 				<div class="tab-pane" id="edu_parvularia">
 				<div class="subseccion educacion_parvularia">
-				<p>Educación Parvularia</p>
+				<p></p>
 				</div>
 				</div>
 
@@ -102,43 +102,55 @@
 
 		<script type="text/template" id="template_menu_secciones">
 			<a id="catalogoDatos" href="#" type="catalogo1" class="btn btn-large btn-primary btnCatalogo ">Catálogo de datos</a>
-			<a  id="catalogoVisualizadores" href="#viz" type="catalogo2"class="btn btn-large btn-default btnCatalogo ">Catálogo de visualizadores</a>
+			<a  id="catalogoVisualizadores" href="#viz" type="catalogo2"class="btn btn-large  btnCatalogo ">Catálogo de visualizadores</a>
 		</script>
 
-		<!-- template_CatalogoDatosListView -->
-		<script type="text/template" id="template_CatalogoDatosListView">
+		<!-- template_CatalogoDatosMainView -->
+		<script type="text/template" id="template_CatalogoDatosMainView">
 			<div class="row">
 			<div class="col-lg-3 sidebar"></div>
 			<div class="col-lg-9">
-			<ul class="list-unstyled list datos"></ul>
+				<div class="temas"></div>
 			</div>
 			</div>	
 		</script>
 
+		
 		<!-- template_CatalogoDatosItemView -->
-		<script type="text/template" id="template_CatalogoDatosItemView">
-			<div id="<%=titulo%>"><h3><%=titulo%></h3></div>
-			<%=descripcion%>
-			<% if (obj.fuente) { %><br/> Fuente: <%= fuente %> <% } %>
-			<br/>
-			<% if (obj.actualizacion) { %> Última Actualizacion: <%= actualizacion %> <% } %>
-			<br/>
-			<% if (obj.vigencia) { %> Vigencia: <%= vigencia %> <% } %>
-			<table class="table">
-			<tr>
-			<th><%=etiqueta_categoria%></th>
-			<th>Formato</th>
-			<th>Tamaño Referencial</th>
-			</tr>
-			<tbody class="list años"></tbody>
-			</table>
+		<script type="text/template" id="template_CatalogoDatosTemasView">
+			<h1><%=tema%></h1>
+			<div class="item"></div>
+			<hr/>
 		</script>
 
-		<!-- template_CatalogoDatosCategoriaItemView -->
-		<script type="text/template" id="template_CatalogoDatosCategoriaItemView">
+		<!-- template_CatalogoDatosTemaView -->
+		<script type="text/template" id="template_CatalogoDatosTemaView"
+			<br/>
+			<h2><%=titulo%></h2><br/>
+			<strong>Descripcion: </strong><%=descripcion%><br/>
+			<strong>Fuente: </strong><%=fuente%><br/>
+			<strong>Actualizacion: </strong><%=actualizacion%><br/>
+			<strong>Vigencia: </strong><%=vigencia%><br/>
+			<strong>etiqueta_categoria: </strong><%=etiqueta_categoria%><br/>
+			<strong>esquema_de_datos: </strong><%=esquema_de_datos%><br/>
+			<table class="table">
+				<thead>
+				<tr>
+					<th><%=etiqueta_categoria%></th>
+					<th>Formato</th>
+					<th>Tamaño Referencial</th>
+				</tr>
+				</thead>
+				<tbody class="itemTR table"></tbody>
+			</table>
+		
+		</script>
+
+		<script type="text/template" id="template_CatalogoDatosTRItemView">
 			<td><%=categoria%></td>
 			<td><div class="list formatos"></div></td>
 			<td><%=tamagno%></td>
+			
 		</script>
 
 		<!-- template_CatalogoDatosFormatoItemView -->
@@ -148,14 +160,13 @@
 
 
 
-
 		<!-- TEMPLATES CATALOGO VISUALIZADORES -->
 
 		<!-- template_CatalogoVisualizadoresListView -->
 		<script type="text/template" id="template_CatalogoVisualizadoresListView">
 			<div class="row">
-				<div class="col-lg-4 sidebar"></div>
-				<div class="col-lg-8">
+				<div class="col-lg-3 sidebar"></div>
+				<div class="col-lg-9">
 				<ul class="list-unstyled list visualizadores"></ul>
 				</div>
 			</div>	
@@ -179,13 +190,22 @@
 		<!-- SIDEBAR -->
 		<script type="text/template" id="template_SideBarView">
 			<br/>
-			<div class="bs-sidebar affix panel">
-			<ul class="nav bs-sidenav"></ul>
+			<div class="bs-sidebar">
+				<ul class="nav bs-sidenav"></ul>
 			</div>
 		</script>
 
 		<script type="text/template" id="template_SideBarItemView">
-			<a title="<%=titulo%>" alt="<%=titulo%>"  href="#">  <%=titulo%></a>
+			<a title="<%=tema%>" alt="<%=tema%>"  href="#">  <%=tema%></a>
+				<ul class="nav itemsnav"></ul>
+		</script>
+
+		<!-- template_SideBarTemaView -->
+		<script type="text/template" id="template_SideBarTemaView"
+			
+			<li><a href="#"><%=titulo%></li></a>
+			
+		
 		</script>
 
 

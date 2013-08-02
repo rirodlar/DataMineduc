@@ -26,10 +26,10 @@ $().ready(function() {
 	App.collections.coleccionDatosEdSuperior.fetch();
 
 	App.collections.coleccionDatosEdParvularia = new App.collections.ColeccionDatosEdParvularia();
-	App.collections.coleccionDatosEdParvularia.fetch();
+	 App.collections.coleccionDatosEdParvularia.fetch();
 
-	App.collections.coleccionVisualizadores = new App.collections.ColeccionVisualizadores();
-	App.collections.coleccionVisualizadores.fetch();
+	 App.collections.coleccionVisualizadores = new App.collections.ColeccionVisualizadores();
+	 App.collections.coleccionVisualizadores.fetch();
 
 	App.views.mainView = new App.views.MainView();
 	$(".maincontent").html(App.views.mainView.render().$el);
@@ -69,10 +69,10 @@ App.views.MainView = Backbone.View.extend(
 		App.views.menuSeccionesView = new App.views.MenuSeccionesView();
 
 		//App.views.CatalogoDatosMainView = new App.views.CatalogoDatosMainView();
-		 App.views.catalogoDatosListViewEdEscolar = new App.views.CatalogoDatosListView({collection:App.collections.coleccionDatosEdEscolar});
-		 App.views.catalogoDatosListViewEdSuperior = new App.views.CatalogoDatosListView({collection:App.collections.coleccionDatosEdSuperior});
-		 App.views.catalogoDatosListViewEdParvularia = new App.views.CatalogoDatosListView({collection:App.collections.coleccionDatosEdParvularia});
-		 App.views.catalogoVisualizadoresListView = new App.views.CatalogoVisualizadoresListView({collection:App.collections.coleccionVisualizadores});
+		 App.views.catalogoDatosListViewEdEscolar  = new App.views.CatalogoDatosMainView({collection:App.collections.coleccionDatosEdEscolar});
+		 App.views.catalogoDatosListViewEdSuperior = new App.views.CatalogoDatosMainView({collection:App.collections.coleccionDatosEdSuperior});
+		  App.views.catalogoDatosListViewEdParvularia = new App.views.CatalogoDatosMainView({collection:App.collections.coleccionDatosEdParvularia});
+		  App.views.catalogoVisualizadoresListView = new App.views.CatalogoVisualizadoresListView({collection:App.collections.coleccionVisualizadores});
 
 		 this.listenTo(App.views.menuSeccionesView, "catalogo:selectDatos", this.showCatalogoDatos);
 		 this.listenTo(App.views.menuSeccionesView, "catalogo:selectVisualizadores", this.showCatalogoVisualizadores);
@@ -87,8 +87,8 @@ App.views.MainView = Backbone.View.extend(
 		this.$el.html(this.template());
 		this.$el.find("div.menu.secciones").html(App.views.menuSeccionesView.$el);
 		this.$el.find("div.subseccion.educacion_escolar").html(App.views.catalogoDatosListViewEdEscolar.$el);
-		this.$el.find("div.subseccion.educacion_superior").html(App.views.catalogoDatosListViewEdSuperior.$el);
-		this.$el.find("div.subseccion.educacion_parvularia").html(App.views.catalogoDatosListViewEdParvularia.$el);
+		 this.$el.find("div.subseccion.educacion_superior").html(App.views.catalogoDatosListViewEdSuperior.$el);
+		 this.$el.find("div.subseccion.educacion_parvularia").html(App.views.catalogoDatosListViewEdParvularia.$el);
 		this.$el.find("div.subseccion.visualizadores").html(App.views.catalogoVisualizadoresListView.$el);
 
 		this.$el.find(".catalogo_visualizadores").hide() //ocultar el catalogo de visualizadores
@@ -258,14 +258,57 @@ App.views.SideBarItemView = Backbone.View.extend({
 	* @returns {View} Esta vista
 	*/
 	render: function() {
+
+
 		var data = this.model.toJSON();
 
 		this.$el.html(this.template(data));
 
-		var $list = this.$el.find(".bs-sidenav");
+		var datosPorItems= new Backbone.Collection(this.model.get("items"));
+		var $list = this.$el.find(".nav");
+		datosPorItems.each(function(item) {
+			console.log(item.toJSON());
+			var itemView = new App.views.SideBarTemaView({model:item});
+			$list.append(itemView.$el);
+		})
+
+		
 
 		return this;
 }
+
+})
+
+App.views.SideBarTemaView = Backbone.View.extend(
+/** @lends CatalogoDatosItemView.prototype */
+{
+	/** tr -  elemento generado por esta vista */
+	tagName :"li",
+	/**
+	* @class CatalogoDatosCategoriaItemView Maneja una fila de datos correspondiente a una catagoria (Ej: año, meses)
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template que maneja las filas de una categoria
+	* 
+	* CatalogoDatosCategoriaItemView genera el template respectivo
+	*/
+	initialize : function() {
+		this.template = _.template($("#template_SideBarTemaView").html())
+		this.render()
+	},
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
+	render: function() {
+		var data = this.model.toJSON();
+		this.$el.html(this.template(data));
+
+		
+		return this;
+	}
 
 })
 

@@ -1,6 +1,6 @@
 
 
-App.views.CatalogoDatosListView = Backbone.View.extend(
+App.views.CatalogoDatosMainView = Backbone.View.extend(
 /** @lends CatalogoDatosListView.prototype */
 {	
 	/**
@@ -12,8 +12,7 @@ App.views.CatalogoDatosListView = Backbone.View.extend(
 	* CatalogoDatosListView genera el template respectivo
 	*/
 	initialize : function() {
-		console.log("CatalogoDatosListView");
-		this.template = _.template($("#template_CatalogoDatosListView").html())
+		this.template = _.template($("#template_CatalogoDatosMainView").html())
 
 		this.sideBarView = new App.views.SideBarView({collection:this.collection});
 
@@ -28,17 +27,17 @@ App.views.CatalogoDatosListView = Backbone.View.extend(
 	* @returns {View} Esta vista
 	*/
 	render: function() {
-
 		this.$el.html(this.template());
 
 		this.$el.find(".sidebar").html(this.sideBarView.$el);
 
-		var $list = this.$el.find(".list.datos");
+		var $list = this.$el.find(".temas");
 
-		this.collection.each(function(item) {
-			var itemView = new App.views.CatalogoDatosItemView({model: item});
+		 this.collection.each(function(item) {
+		 	console.log(item.toJSON());
+			var itemView = new App.views.template_CatalogoDatosTemasView({model: item});
 			$list.append(itemView.render().$el);
-		})
+		 })
 		
 
 		return this;
@@ -47,11 +46,12 @@ App.views.CatalogoDatosListView = Backbone.View.extend(
 })
 
 
-App.views.CatalogoDatosItemView = Backbone.View.extend(
+App.views.template_CatalogoDatosTemasView = Backbone.View.extend(
 /** @lends CatalogoDatosItemView.prototype */
 {
 	/** li -  elemento generado por esta vista */
-	tagName :"li",
+	tagName :"div",
+	className:"tema",
 	/**
 	* @class CatalogoDatosItemView Maneja un elemento de datos
 	*
@@ -60,7 +60,7 @@ App.views.CatalogoDatosItemView = Backbone.View.extend(
 	*
 	*/
 	initialize : function() {
-		this.template = _.template($("#template_CatalogoDatosItemView").html())
+		this.template = _.template($("#template_CatalogoDatosTemasView").html())
 		this.render()
 	},
 	/**
@@ -73,13 +73,13 @@ App.views.CatalogoDatosItemView = Backbone.View.extend(
 		console.log(data);
 		this.$el.html(this.template(data));
 
-		var $list = this.$el.find(".list.años");
+		var $list = this.$el.find(".item");
 
-		var datosPorAño = new Backbone.Collection(this.model.get("datos"));
+		var datosPorItems= new Backbone.Collection(this.model.get("items"));
 
-		datosPorAño.each(function(item) {
-			var añoView = new App.views.CatalogoDatosCategoriaItemView({model:item});
-			$list.append(añoView.$el);
+		datosPorItems.each(function(item) {
+			var itemView = new App.views.CatalogoDatosTemaView({model:item});
+			$list.append(itemView.$el);
 		})
 
 		return this;
@@ -88,7 +88,47 @@ App.views.CatalogoDatosItemView = Backbone.View.extend(
 })
 
 
-App.views.CatalogoDatosCategoriaItemView = Backbone.View.extend(
+App.views.CatalogoDatosTemaView = Backbone.View.extend(
+/** @lends CatalogoDatosItemView.prototype */
+{
+	/** tr -  elemento generado por esta vista */
+	tagName :"div",
+	/**
+	* @class CatalogoDatosCategoriaItemView Maneja una fila de datos correspondiente a una catagoria (Ej: año, meses)
+	*
+	* @augments Backbone.View
+	* @constructs
+	* @property {String} this.template - Template que maneja las filas de una categoria
+	* 
+	* CatalogoDatosCategoriaItemView genera el template respectivo
+	*/
+	initialize : function() {
+		this.template = _.template($("#template_CatalogoDatosTemaView").html())
+		this.render()
+	},
+	/**
+	* Presenta información en elemento respectivo ($el)
+	*
+	* @returns {View} Esta vista
+	*/
+	render: function() {
+		var data = this.model.toJSON();
+		this.$el.html(this.template(data));
+
+		var $list = this.$el.find(".itemTR.table");
+	
+		 var datosPorFormato = new Backbone.Collection(this.model.get("datos"));
+		 datosPorFormato.each(function(item) {
+		 	var formatoView = new App.views.CatalogoDatosTRItemView({model:item});
+		 	$list.append(formatoView.$el);
+		 })
+
+		return this;
+	}
+
+})
+
+App.views.CatalogoDatosTRItemView = Backbone.View.extend(
 /** @lends CatalogoDatosItemView.prototype */
 {
 	/** tr -  elemento generado por esta vista */
@@ -103,7 +143,7 @@ App.views.CatalogoDatosCategoriaItemView = Backbone.View.extend(
 	* CatalogoDatosCategoriaItemView genera el template respectivo
 	*/
 	initialize : function() {
-		this.template = _.template($("#template_CatalogoDatosCategoriaItemView").html())
+		this.template = _.template($("#template_CatalogoDatosTRItemView").html())
 		this.render()
 	},
 	/**

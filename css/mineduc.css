@@ -653,3 +653,10 @@
   background-color: transparent;
   border-right: 1px solid #563d7c;
 }
+
+hr{
+  border-top:1px solid #000000 !important;
+}
+.itemsnav{
+  padding-left: 15px !important;;
+}
