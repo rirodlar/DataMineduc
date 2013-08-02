@@ -660,3 +660,7 @@ hr{
 .itemsnav{
   padding-left: 15px !important;;
 }
+.btn:hover, .btn:focus {
+color: #2a6496 !important;
+text-decoration: none;
+}

@@ -12,7 +12,7 @@ App.views.CatalogoVisualizadoresListView = Backbone.View.extend(
 	initialize : function() {
 		this.template = _.template($("#template_CatalogoVisualizadoresListView").html())
 
-		//this.sideBarView = new App.views.SideBarView({collection:this.collection});
+		this.sideBarView = new App.views.SideBarView2({collection:this.collection});
 		
 		this.listenTo(this.collection, "change", this.render);
 		this.listenTo(this.collection, "sync", this.render);
@@ -28,7 +28,7 @@ App.views.CatalogoVisualizadoresListView = Backbone.View.extend(
 	render: function() {
 		this.$el.html(this.template());
 
-		//this.$el.find(".sidebar").html(this.sideBarView.$el);
+		this.$el.find(".sidebar").html(this.sideBarView.$el);
 		 var $list = this.$el.find(".list.visualizadores");
 
 		 this.collection.each(function(item) {
