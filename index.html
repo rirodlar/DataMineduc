@@ -1,6 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mineduc</title>
 	<link rel="shortcut icon" type="image/x-icon" href="Mineduc_INT/img/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/mineduc.css" media="screen">
@@ -59,12 +61,12 @@
 		<header>
 			<br>
 			<div class="row">
-				<div class="col-lg-3">
+				<div class="col-lg-3 col-12 col-sm-12">
 					<a href="#">
 						<img rendermode="preview" src="img/mineduc/462_760_logo_header.png">
 					</a>
 				</div>
-				<div class="col-lg-8">
+				<div class="col-lg-8 col-12 col-sm-12">
 					<h1> data.mineduc.cl </h1>
 					<h2> Indicadores educativos para la comunidad</h2>
 				</div>
@@ -79,10 +81,10 @@
 		<footer>
 			<div class="btn-inverse">
 				<div class="row" id="footer_fila">
-					<div class="col-lg-2">
+					<div class="col-lg-2 col-12 col-sm-12">
 						<img rendermode="preview" src="img/mineduc/Satellite.png">
 					</div>
-					<div class="col-lg-9" itemscope="" itemtype="http://schema.org/EducationalOrganization">
+					<div class="col-lg-9 col-12 col-sm-12" itemscope="" itemtype="http://schema.org/EducationalOrganization">
 						<span class="NegritaBlanca">
 							<div class="left">
 								<span itemprop="name">Ministerio de Educación </span>&nbsp; </div>
@@ -137,8 +139,8 @@
 		<!-- template_CatalogoDatosMainView -->
 		<script type="text/template" id="template_CatalogoDatosMainView">
 			<div class="row">
-				<div class="col-lg-3 sidebar"></div>
-				<div class="col-lg-9">
+				<div class="col-lg-3 col-12 col-sm-12 sidebar"></div>
+				<div class="col-lg-9 col-12 col-sm-12">
 					<div class="temas"></div>
 				</div>
 			</div>	
@@ -208,8 +210,8 @@
 		<!-- template_CatalogoVisualizadoresListView -->
 		<script type="text/template" id="template_CatalogoVisualizadoresListView">
 		<div class="row">
-			<div class="col-lg-3 sidebar"></div>
-			<div class="col-lg-9">
+			<div class="col-lg-3 col-12 col-sm-12 sidebar"></div>
+			<div class="col-lg-9 col-12 col-sm-12">
 				<ul class="list-unstyled list visualizadores"></ul>
 			</div>
 		</div>	
@@ -224,7 +226,7 @@
 		<!-- template_viewsCatalogoVisualizadoresItemView -->
 		<script type="text/template" id="template_viewsCatalogoVisualizadoresItemView">
 			<a href="<%=url%>" target='_blank' class="thumbnail">
-				<img class="thumbnails" src="<%=thumbnails%>"/>
+				<img class="thumbnails img-responsive" src="<%=thumbnails%>"/>
 			</a>
 		<br/>
 			<a href="#" title="<%=nombre%>" alt="<%=url%>" class="windowIframe"><%=nombre%></a>
