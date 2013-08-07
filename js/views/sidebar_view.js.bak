@@ -1,0 +1,161 @@
+
+                <div class="col-lg-9 my-content">
+                        <div class="temas"><div class="tema">
+                            <h1 id="matricula"> Matricula</h1>
+                            <div class="item"><div>
+                            <h2 id="matricula-por-establecimiento">Matricula por establecimiento</h2><br>
+                            <strong>Descripcion: </strong>Contiene indicadores para número total de alumnos (en todos los niveles de enseñanza que imparta el establecimiento). Cada fila de la tabla corresponde a un Año/Establecimiento. <br>
+                            <strong>Fuente: </strong>Gestión de Datos, Mineduc<br>
+                            <strong>Actualizacion: </strong>20 Julio 2013<br>
+                            <strong>Vigencia: </strong>Hasta Enero de 2014<br>
+                            <strong>etiqueta_categoria: </strong>Año<br>
+                            <strong>esquema_de_datos: </strong>http://url...<br>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>Formato</th>
+                                    <th>Tamaño Referencial</th>
+                                </tr>
+                                </thead>
+                                <tbody class="itemTR table"><tr>
+                            <td>2006</td>
+                            <td><div class="list formatos"><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Establecimiento_Matricula_anio_2006.csv">csv</a>
+                        </div><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Establecimiento_Matricula_anio_2006.xlsx">xls</a>
+                        </div></div></td>
+                            <td>100 kb</td>
+                            
+                        </tr><tr>
+                            <td>2007</td>
+                            <td><div class="list formatos"><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Establecimiento_Matricula_anio_2007.csv">csv</a>
+                        </div><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Establecimiento_Matricula_anio_2007.xlsx">xls</a>
+                        </div></div></td>
+                            <td>100 kb</td>
+                            
+                        </tr></tbody>
+                            </table>
+                        
+                        </div><div>
+                            <h2 id="matricula-por-nivel">Matricula por nivel</h2><br>
+                            <strong>Descripcion: </strong>Contiene indicadores para número total de alumnos (en todos los niveles de enseñanza que imparta el establecimiento). Cada fila de la tabla corresponde a un Año/Establecimiento. <br>
+                            <strong>Fuente: </strong>Gestión de Datos, Mineduc<br>
+                            <strong>Actualizacion: </strong>20 Julio 2013<br>
+                            <strong>Vigencia: </strong>Hasta Enero de 2014<br>
+                            <strong>etiqueta_categoria: </strong>Año<br>
+                            <strong>esquema_de_datos: </strong>http://url...<br>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>Formato</th>
+                                    <th>Tamaño Referencial</th>
+                                </tr>
+                                </thead>
+                                <tbody class="itemTR table"><tr>
+                            <td>2006</td>
+                            <td><div class="list formatos"><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2006.csv">csv</a>
+                        </div><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2006.xlsx">xls</a>
+                        </div></div></td>
+                            <td>100 kb</td>
+                            
+                        </tr><tr>
+                            <td>2007</td>
+                            <td><div class="list formatos"><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2007.csv">csv</a>
+                        </div><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2008.xlsx">xls</a>
+                        </div></div></td>
+                            <td>1 kb</td>
+                            
+                        </tr></tbody>
+                            </table>
+                        
+                        </div></div>
+                            <hr>
+                        </div><div class="tema">
+                            <h1 id="asistencia"> Asistencia</h1>
+                            <div class="item"><div>
+                            <h2 id="asistencia-por-establecimiento">Asistencia por establecimiento</h2><br>
+                            <strong>Descripcion: </strong>Contiene indicadores para número total de alumnos (en todos los niveles de enseñanza que imparta el establecimiento). Cada fila de la tabla corresponde a un Año/Establecimiento.<br>
+                            <strong>Fuente: </strong>Gestión de Datos, Mineduc<br>
+                            <strong>Actualizacion: </strong>20 Julio 2013<br>
+                            <strong>Vigencia: </strong>Hasta Enero de 2014<br>
+                            <strong>etiqueta_categoria: </strong>Año<br>
+                            <strong>esquema_de_datos: </strong>http://url...<br>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>Formato</th>
+                                    <th>Tamaño Referencial</th>
+                                </tr>
+                                </thead>
+                                <tbody class="itemTR table"><tr>
+                            <td>2013</td>
+                            <td><div class="list formatos"><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2013.csv">csv</a>
+                        </div><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2013.xlsx">xls</a>
+                        </div></div></td>
+                            <td>35 Mb</td>
+                            
+                        </tr><tr>
+                            <td>2013</td>
+                            <td><div class="list formatos"><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2012.csv">csv</a>
+                        </div><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2012.xlsx">xls</a>
+                        </div></div></td>
+                            <td>45 Mb</td>
+                            
+                        </tr></tbody>
+                            </table>
+                        
+                        </div><div>
+                            <h2 id="asistencia-por-nivel">asistencia por nivel</h2><br>
+                            <strong>Descripcion: </strong>Contiene indicadores para número total de alumnos (en todos los niveles de enseñanza que imparta el establecimiento). Cada fila de la tabla corresponde a un Año/Establecimiento.<br>
+                            <strong>Fuente: </strong>Gestión de Datos, Mineduc<br>
+                            <strong>Actualizacion: </strong>20 Julio 2013<br>
+                            <strong>Vigencia: </strong>Hasta Enero de 2014<br>
+                            <strong>etiqueta_categoria: </strong>Año<br>
+                            <strong>esquema_de_datos: </strong>http://url...<br>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>Formato</th>
+                                    <th>Tamaño Referencial</th>
+                                </tr>
+                                </thead>
+                                <tbody class="itemTR table"><tr>
+                            <td>2013</td>
+                            <td><div class="list formatos"><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2013.csv">csv</a>
+                        </div><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2013.xlsx">xls</a>
+                        </div></div></td>
+                            <td>5 Mb</td>
+                            
+                        </tr><tr>
+                            <td>2013</td>
+                            <td><div class="list formatos"><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2012.csv">csv</a>
+                        </div><div class="col-lg-1">
+                            <a href="http://datastorage.mineduc.cl/tablas/Nivel_Matricula_anio_2012.xlsx">xls</a>
+                        </div></div></td>
+                            <td>5 Mb</td>
+                            
+                        </tr></tbody>
+                            </table>
+                        
+                        </div></div>
+                            <hr>
+                        </div></div>
+                </div> <!--col-lg*9-->
+      

@@ -11,13 +11,50 @@
 	<script type="text/javascript" src="js/router.js"></script>
 	<script type="text/javascript" src="js/views/catalogo_datos_view.js"></script>
 	<script type="text/javascript" src="js/views/catalogo_visualizadores_view.js"></script>
+	<script type="text/javascript" src="js/views/sidebar_view.js"></script>
 	<script type="text/javascript" src="js/collections/coleccion_datos.js"></script>
 	<script src="js/libs/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery/jquery.collapse.js"></script>
 	<link href="css/bootstrap.css" rel="stylesheet">
 	
-</head>
+	<style type="text/css">
+		a:hover{
+			text-decoration: underline !important;
+		}
+		a.liMain{
+			font-size:large;
+		}
+		ul.secundario{
+			margin-left: 15px;
+		}
+		.navex{
+			background-color: #f6f6f1 ;
+		}
+		.temas{
+			overflow: scroll;
+			height:600px;
+		}
+		a.csv{
+			background-image: url(img/Xls_icon.png);
+			background-repeat:no-repeat;
+		
+			background-position:center; 
+		}
+		a.xls{
+			background-image: url(img/icon_csv.gif);
+			background-repeat:no-repeat;
+		
+			background-position:center; 
 
-<body data-twttr-rendered="true">
+		}
+		h2{
+			font-weight: bold;
+		}
+	</style>
+	
+	</head>
+
+<body>
 	<div class="container CLASE">
 		<header>
 			<br>
@@ -35,6 +72,7 @@
 		</header>
 
 		<div class="container">
+				
 			<div class="maincontent"></div>
 		</div> 
 
@@ -62,40 +100,31 @@
 		<!-- template_MainView -->
 		<script type="text/template" id="template_MainView">
 			<div>
-				<div class="row menu secciones">
-				</div>
+				<div class="row menu secciones"></div>
 				<br/>
 				<div class="row seccion catalogo_datos">
-				<!-- TAB -->
-				<ul id="tabs" class="nav nav-tabs menu subseccion" data-tabs="tabs">
-					<li class="active"><a href="#edu_escolar" data-toggle="tab">Educación Escolar</a></li>
-					<li><a href="#edu_superior" data-toggle="tab">Educación Superior</a></li>
-					<li><a href="#edu_parvularia" data-toggle="tab">Educación Parvularia</a></li>
-				</ul>
+					<!-- TAB -->
+					<ul id="tabs" class="nav nav-tabs menu subseccion" data-tabs="tabs">
+						<li class="active"><a href="#edu_escolar" data-toggle="tab">Educación Escolar</a></li>
+						<li><a href="#edu_superior" data-toggle="tab">Educación Superior</a></li>
+						<li><a href="#edu_parvularia" data-toggle="tab">Educación Parvularia</a></li>
+					</ul>
 
-				<div id="my-tab-content" class="tab-content">
-				<div class="tab-pane active" id="edu_escolar">
-				<div class="subseccion educacion_escolar"></div>
-				</div>
-				<div class="tab-pane" id="edu_superior">
-				<div class="subseccion educacion_superior"></div>
-				</div>
-				<div class="tab-pane" id="edu_parvularia">
-				<div class="subseccion educacion_parvularia">
-				<p></p>
-				</div>
-				</div>
-
-
-				</div>
+					<div id="my-tab-content" class="tab-content">
+						<div class="tab-pane active" id="edu_escolar">
+							<div class="subseccion educacion_escolar"></div>
+						</div>
+						<div class="tab-pane" id="edu_superior">
+							<div class="subseccion educacion_superior"></div>
+						</div>
+						<div class="tab-pane" id="edu_parvularia">
+							<div class="subseccion educacion_parvularia"></div>
+						</div>
+					</div>
 				</div>
 				<div class="row seccion catalogo_visualizadores">
-				<div class="menu subseccion">
-
-				</div>
-				<div class="subseccion visualizadores">
-
-				</div>
+					<div class="menu subseccion"></div>
+					<div class="subseccion visualizadores"></div>
 				</div>
 			</div> 
 		</script>
@@ -108,41 +137,55 @@
 		<!-- template_CatalogoDatosMainView -->
 		<script type="text/template" id="template_CatalogoDatosMainView">
 			<div class="row">
-			<div class="col-lg-3 sidebar"></div>
-			<div class="col-lg-9">
-				<div class="temas"></div>
-			</div>
+				<div class="col-lg-3 sidebar"></div>
+				<div class="col-lg-9">
+					<div class="temas"></div>
+				</div>
 			</div>	
 		</script>
 
 		
 		<!-- template_CatalogoDatosItemView -->
 		<script type="text/template" id="template_CatalogoDatosTemasView">
-			<h1><%=tema%></h1>
+			<h2 id="<%=slug%>"> <%=tema%></h2>
 			<div class="item"></div>
 			<hr/>
 		</script>
 
 		<!-- template_CatalogoDatosTemaView -->
 		<script type="text/template" id="template_CatalogoDatosTemaView"
-			<br/>
-			<h2><%=titulo%></h2><br/>
-			<strong>Descripcion: </strong><%=descripcion%><br/>
-			<strong>Fuente: </strong><%=fuente%><br/>
-			<strong>Actualizacion: </strong><%=actualizacion%><br/>
-			<strong>Vigencia: </strong><%=vigencia%><br/>
-			<strong>etiqueta_categoria: </strong><%=etiqueta_categoria%><br/>
-			<strong>esquema_de_datos: </strong><%=esquema_de_datos%><br/>
-			<table class="table">
-				<thead>
+		<br/>
+		<h3 id="<%=slug%>"><%=titulo%></h3><br/>
+		<p><%=descripcion%></p>
+		<table>
+			<tr>
+				<td>Fuente:</td> <td><%=fuente%></td>
+			</tr>
+			<tr>
+				<td>Actualización: </td> <td><%=actualizacion%></td>
+			</tr>
+			<tr>
+				<td>Vigencia: </td> <td><%=vigencia%></td>
+			</tr>
+			<tr>
+				<td>Categoria: </td> <td><%=etiqueta_categoria%></td>
+			</tr>
+			<tr>
+				<td>Url</td><td><a href="<%=esquema_de_datos%>"><%=esquema_de_datos%><a></td>
+			</tr>
+			
+		<table>
+		<br/>
+		<table class="table">
+			<thead>
 				<tr>
 					<th><%=etiqueta_categoria%></th>
 					<th>Formato</th>
 					<th>Tamaño Referencial</th>
 				</tr>
-				</thead>
-				<tbody class="itemTR table"></tbody>
-			</table>
+			</thead>
+			<tbody class="itemTR table"></tbody>
+		</table>
 		
 		</script>
 
@@ -150,12 +193,12 @@
 			<td><%=categoria%></td>
 			<td><div class="list formatos"></div></td>
 			<td><%=tamagno%></td>
-			
+
 		</script>
 
 		<!-- template_CatalogoDatosFormatoItemView -->
 		<script type="text/template" id="template_CatalogoDatosFormatoItemView">
-			<a href="<%=url%>"><%=tipo%></a>
+			<a class="<%=tipo%>" href="<%=url%>">....</a>
 		</script>
 
 
@@ -164,70 +207,50 @@
 
 		<!-- template_CatalogoVisualizadoresListView -->
 		<script type="text/template" id="template_CatalogoVisualizadoresListView">
-			<div class="row">
-				<div class="col-lg-3 sidebar"></div>
-				<div class="col-lg-9">
+		<div class="row">
+			<div class="col-lg-3 sidebar"></div>
+			<div class="col-lg-9">
 				<ul class="list-unstyled list visualizadores"></ul>
-				</div>
-			</div>	
+			</div>
+		</div>	
 		</script>
 
 		<!-- template_CatalogoVisualizadoresCategoriaView -->
 		<script type="text/template" id="template_CatalogoVisualizadoresCategoriaView">
-			<h3>  <%=titulo%>   </h3>
+		<h3>  <%=titulo%>   </h3>
 			<div class="row  list visualizador"></div>
 		</script>
 
 		<!-- template_viewsCatalogoVisualizadoresItemView -->
 		<script type="text/template" id="template_viewsCatalogoVisualizadoresItemView">
 			<a href="<%=url%>" target='_blank' class="thumbnail">
-			<img class="thumbnails" src="<%=thumbnails%>"/>
+				<img class="thumbnails" src="<%=thumbnails%>"/>
 			</a>
-			<br/>
+		<br/>
 			<a href="#" title="<%=nombre%>" alt="<%=url%>" class="windowIframe"><%=nombre%></a>
 		</script>
 
 		<!-- SIDEBAR -->
 		<script type="text/template" id="template_SideBarView">
 			<br/>
-			<div class="bs-sidebar">
-				<ul class="nav bs-sidenav"></ul>
-			</div>
+			<ul class="nav bs-sidenav navex"></ul>
 		</script>
 
 		<script type="text/template" id="template_SideBarItemView">
-			<a title="<%=tema%>" alt="<%=tema%>"  href="#">  <%=tema%></a>
-				<ul class="nav itemsnav"></ul>
+			<a title="<%=tema%>" alt="<%=tema%>" class="liMain"  href="#">  <%=tema%></a>
+			<ul class="nav secundario"></ul>
 		</script>
 
 		<!-- template_SideBarTemaView -->
 		<script type="text/template" id="template_SideBarTemaView"
-			
-			<li><a href="#"><%=titulo%></li></a>
-			
-		
+			<li><a href="#<%=slug%>"><%=titulo%></li></a>
 		</script>
-
-
-
-<!-- SIDEBAR -->
-		<script type="text/template" id="template_SideBarView2">
-			<br/>
-			<div class="bs-sidebar">
-			<ul class="nav bs-sidenav"></ul>
-			</div>
-		</script>
-
-		<script type="text/template" id="template_SideBarItemView2">
-			<a title="<%=titulo%>" alt="<%=titulo%>"  href="#">  <%=titulo%></a>
-		</script>
-
 
 <!-- SIDEBAR2 -->
 		<script type="text/template" id="template_SideBarView2">
 			<br/>
-			<div class="bs-sidebar affix panel">
-			<ul class="nav bs-sidenav"></ul>
+			<div class="bs-sidebar">
+			<ul class="nav bs-sidenav navex"></ul>
 			</div>
 		</script>
 
@@ -246,4 +269,4 @@
 
 		</div>
 	</body>
-</html>
+	</html>

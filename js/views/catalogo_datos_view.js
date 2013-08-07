@@ -13,11 +13,9 @@ App.views.CatalogoDatosMainView = Backbone.View.extend(
 	*/
 	initialize : function() {
 		this.template = _.template($("#template_CatalogoDatosMainView").html())
-
 		this.sideBarView = new App.views.SideBarView({collection:this.collection});
-
-		this.listenTo(this.collection, "change", this.render);
-		this.listenTo(this.collection, "sync", this.render);
+		//this.listenTo(this.collection, "change", this.render);
+		//this.listenTo(this.collection, "sync", this.render);
 
 		this.render()
 	},
@@ -28,16 +26,13 @@ App.views.CatalogoDatosMainView = Backbone.View.extend(
 	*/
 	render: function() {
 		this.$el.html(this.template());
-
 		this.$el.find(".sidebar").html(this.sideBarView.$el);
-
 		var $list = this.$el.find(".temas");
-
-		 this.collection.each(function(item) {
-		 	console.log(item.toJSON());
+		this.collection.each(function(item) {
+		 	//console.log(item.toJSON());
 			var itemView = new App.views.template_CatalogoDatosTemasView({model: item});
 			$list.append(itemView.render().$el);
-		 })
+		})
 		
 
 		return this;
@@ -70,7 +65,8 @@ App.views.template_CatalogoDatosTemasView = Backbone.View.extend(
 	*/
 	render: function() {
 		var data = this.model.toJSON();
-		console.log(data);
+		data.slug = this.make_slug(data.tema);
+		//console.log(data);
 		this.$el.html(this.template(data));
 
 		var $list = this.$el.find(".item");
@@ -83,6 +79,12 @@ App.views.template_CatalogoDatosTemasView = Backbone.View.extend(
 		})
 
 		return this;
+	},
+	make_slug:function(str){
+	    str = str.toLowerCase();
+	    str = str.replace(/[^a-z0-9]+/g, '-');
+	    str = str.replace(/^-|-$/g, '');
+	    return str;
 	}
 
 })
@@ -113,6 +115,7 @@ App.views.CatalogoDatosTemaView = Backbone.View.extend(
 	*/
 	render: function() {
 		var data = this.model.toJSON();
+		data.slug = this.make_slug(data.titulo);
 		this.$el.html(this.template(data));
 
 		var $list = this.$el.find(".itemTR.table");
@@ -124,6 +127,12 @@ App.views.CatalogoDatosTemaView = Backbone.View.extend(
 		 })
 
 		return this;
+	},
+	make_slug:function(str){
+	    str = str.toLowerCase();
+	    str = str.replace(/[^a-z0-9]+/g, '-');
+	    str = str.replace(/^-|-$/g, '');
+	    return str;
 	}
 
 })

@@ -3,7 +3,7 @@
         "tema": "Matricula Ed parvularia",
             "items" : [
                 {       
-                    "titulo": "Matricula por establecimiento",
+                    "titulo": "Matricula por establecimiento 3",
                     "descripcion": "Contiene indicadores para número total de alumnos (en todos los niveles de enseñanza que imparta el establecimiento). Cada fila de la tabla corresponde a un Año/Establecimiento. ",
                     "fuente": "Gestión de Datos, Mineduc",
                     "actualizacion" : "20 Julio 2013",
@@ -42,7 +42,7 @@
             ]
     },
     {
-            "titulo": "Matricula por nivel",
+            "titulo": "Matricula por nivel 3",
             "descripcion": "Contiene indicadores para número total de alumnos (en todos los niveles de enseñanza que imparta el establecimiento). Cada fila de la tabla corresponde a un Año/Establecimiento. ",
             "fuente": "Gestión de Datos, Mineduc",
             "actualizacion" : "20 Julio 2013",
@@ -83,7 +83,7 @@
         ]
     },
     {
-     "tema": "Asistencia",
+     "tema": "Asistencia 3",
         "items": [
             {
                 "titulo": "Asistencia por establecimiento",
@@ -125,7 +125,7 @@
                 ]
             },
             {
-                "titulo": "asistencia por nivel",
+                "titulo": "asistencia por nivel 3",
                 "descripcion": "Contiene indicadores para número total de alumnos (en todos los niveles de enseñanza que imparta el establecimiento). Cada fila de la tabla corresponde a un Año/Establecimiento.",
                 "fuente": "Gestión de Datos, Mineduc",
                 "actualizacion": "20 Julio 2013",

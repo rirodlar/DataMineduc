@@ -21,7 +21,7 @@ App.Router = Backbone.Router.extend(
     * Muestra el catalogo de datos
     */
     catalogoDatos: function () {
-       App.views.mainView.showCatalogoDatos();
+      // App.views.mainView.showCatalogoDatos();
 	 	
     },
     /** 
