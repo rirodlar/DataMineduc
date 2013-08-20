@@ -12,9 +12,9 @@ App.Router = Backbone.Router.extend(
     },
 
     routes: {
-        "": "catalogoDatos",
-        "datos": "catalogoDatos",
-        "visualizadores": "catalogoVisualizadores"
+        "!": "catalogoDatos",
+        "!datos": "catalogoDatos",
+        "!visualizadores": "catalogoVisualizadores"
      
     },
     /** 

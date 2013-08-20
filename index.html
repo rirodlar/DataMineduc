@@ -11,50 +11,45 @@
 	<script type="text/javascript" src="js/libs/backbone/backbone-min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/router.js"></script>
+	<script type="text/javascript" src="js/views/menuSeccionesView.js"></script>
 	<script type="text/javascript" src="js/views/catalogo_datos_view.js"></script>
 	<script type="text/javascript" src="js/views/catalogo_visualizadores_view.js"></script>
 	<script type="text/javascript" src="js/views/sidebar_view.js"></script>
 	<script type="text/javascript" src="js/collections/coleccion_datos.js"></script>
 	<script src="js/libs/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery/jquery.collapse.js"></script>
+	<script type="text/javascript"></script>
 	<link href="css/bootstrap.css" rel="stylesheet">
-	
+	<link href="css/bootstrap-glyphicons.css" rel="stylesheet">
 	<style type="text/css">
-		a:hover{
-			text-decoration: underline !important;
-		}
-		a.liMain{
-			font-size:large;
-		}
-		ul.secundario{
-			margin-left: 15px;
-		}
-		.navex{
-			background-color: #f6f6f1 ;
-		}
-		.temas{
-			overflow: scroll;
-			height:600px;
-		}
-		a.csv{
-			background-image: url(img/Xls_icon.png);
-			background-repeat:no-repeat;
-		
-			background-position:center; 
-		}
-		a.xls{
-			background-image: url(img/icon_csv.gif);
-			background-repeat:no-repeat;
-		
-			background-position:center; 
-
-		}
-		h2{
-			font-weight: bold;
-		}
+			@media (max-width: 767px) {
+				.affix{
+					position: static;
+				}
+			}
+			@media (max-width: 480px) {
+				.affix{
+					position: static;
+					width: 100%;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1980px) {
+			   .accordion{
+			      width: 230px;
+			    }
+			}
 	</style>
-	
-	</head>
+	<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-42890251-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+	</script>
+</head>
 
 <body>
 	<div class="container CLASE">
@@ -66,46 +61,48 @@
 						<img rendermode="preview" src="img/mineduc/462_760_logo_header.png">
 					</a>
 				</div>
-				<div class="col-lg-8 col-12 col-sm-12">
+				<div class="col-lg-9 col-12 col-sm-12">
 					<h1> data.mineduc.cl </h1>
 					<h2> Indicadores educativos para la comunidad</h2>
 				</div>
 			</div>
 		</header>
 
-		<div class="container">
-				
+		<div class="container">			
 			<div class="maincontent"></div>
 		</div> 
 
 		<footer>
-			<div class="btn-inverse">
+			<div class="btn-inverse label-invers" style="background-color:#000">
 				<div class="row" id="footer_fila">
-					<div class="col-lg-2 col-12 col-sm-12">
-						<img rendermode="preview" src="img/mineduc/Satellite.png">
+					<div class="col-lg-3 col-12 col-sm-12">
+						<div id="img_footer">.</div>
 					</div>
-					<div class="col-lg-9 col-12 col-sm-12" itemscope="" itemtype="http://schema.org/EducationalOrganization">
+					<div class="col-lg-9 col-12 col-sm-12">
 						<span class="NegritaBlanca">
-							<div class="left">
-								<span itemprop="name">Ministerio de Educación </span>&nbsp; </div>
-								<div class="left"> Teléfono: <span itemprop="telephone"> +56 2 240 660 00 </span>&nbsp; </div>
-								<div class="left" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress"> Dirección:&nbsp; <span itemprop="address"> Av. Libertador Bernardo O'higgins 1371</span>
-								</div>
-							</span>
-						</div>
+								<span>Ministerio de Educación 
+								Teléfono: +56 2 240 660 00
+								 Dirección:&nbsp;  Av. Libertador Bernardo O'higgins 1371
+								</span>
+						</span>
 					</div>
 				</div>
-			</footer>
-		</div>
+			</div>
+		</footer>
+	</div>
 
-		<!-- TEMPLATES  -->
-		<!-- template_MainView -->
+<!-- ------------------------- TEMPLATES ----------------------------------------- -->
+
+		<!-- 
+			template principal
+			Contenedor Secciones (Catalo de datos, Catalogo de Visualizadores)
+			TABS (Ed. escolar, Ed. Superior, Ed. Parvularia)
+		-->
 		<script type="text/template" id="template_MainView">
 			<div>
 				<div class="row menu secciones"></div>
 				<br/>
 				<div class="row seccion catalogo_datos">
-					<!-- TAB -->
 					<ul id="tabs" class="nav nav-tabs menu subseccion" data-tabs="tabs">
 						<li class="active"><a href="#edu_escolar" data-toggle="tab">Educación Escolar</a></li>
 						<li><a href="#edu_superior" data-toggle="tab">Educación Superior</a></li>
@@ -131,16 +128,17 @@
 			</div> 
 		</script>
 
+		<!-- -----------------------------template_menu_secciones ----------------------------------------------------- -->
 		<script type="text/template" id="template_menu_secciones">
 			<a id="catalogoDatos" href="#" type="catalogo1" class="btn btn-large btn-primary btnCatalogo ">Catálogo de datos</a>
-			<a  id="catalogoVisualizadores" href="#viz" type="catalogo2"class="btn btn-large  btnCatalogo ">Catálogo de visualizadores</a>
+			<a id="catalogoVisualizadores" href="#!datos" type="catalogo2"class="btn btn-large  btnCatalogo ">Catálogo de visualizadores</a>
 		</script>
 
 		<!-- template_CatalogoDatosMainView -->
 		<script type="text/template" id="template_CatalogoDatosMainView">
 			<div class="row">
-				<div class="col-lg-3 col-12 col-sm-12 sidebar"></div>
-				<div class="col-lg-9 col-12 col-sm-12">
+				<div class="col-lg-3 col-12 col-sm-3 sidebar"></div>
+				<div class="col-lg-9 col-12 col-sm-9">
 					<div class="temas"></div>
 				</div>
 			</div>	
@@ -156,119 +154,133 @@
 
 		<!-- template_CatalogoDatosTemaView -->
 		<script type="text/template" id="template_CatalogoDatosTemaView"
-		<br/>
-		<h3 id="<%=slug%>"><%=titulo%></h3><br/>
-		<p><%=descripcion%></p>
-		<table>
-			<tr>
-				<td>Fuente:</td> <td><%=fuente%></td>
-			</tr>
-			<tr>
-				<td>Actualización: </td> <td><%=actualizacion%></td>
-			</tr>
-			<tr>
-				<td>Vigencia: </td> <td><%=vigencia%></td>
-			</tr>
-			<tr>
-				<td>Categoria: </td> <td><%=etiqueta_categoria%></td>
-			</tr>
-			<tr>
-				<td>Url</td><td><a href="<%=esquema_de_datos%>"><%=esquema_de_datos%><a></td>
-			</tr>
-			
-		<table>
-		<br/>
-		<table class="table">
-			<thead>
-				<tr>
-					<th><%=etiqueta_categoria%></th>
-					<th>Formato</th>
-					<th>Tamaño Referencial</th>
-				</tr>
-			</thead>
-			<tbody class="itemTR table"></tbody>
-		</table>
-		
+			<br/>
+			<h3 id="<%=slug%>"><%=titulo%></h3><br/>
+			<p><%=descripcion%></p>
+			<table>
+				
+				<% if (obj.fuente != null) { %>	
+					<tr>
+						<td>Fuente:</td> <td><%=fuente%></td>
+					</tr>
+				<% } %>
+				
+				<% if (obj.actualizacion != null) { %>	
+					<tr>
+						<td>Actualización: </td> <td><%=actualizacion%></td>
+					</tr>
+				<% } %>
+
+				<% if (obj.vigencia != null) { %>
+					<tr>
+						<td>Vigencia: </td> <td><%=vigencia%></td>
+					</tr>
+				<% } %>
+
+				<% if (obj.esquema_de_datos != null) { %>
+				  	<tr>
+						<td>Esquema de datos: </td>
+						<td><a href="<%=esquema_de_datos%>">Descargar<a></td>
+					</tr>
+				<% } %>
+
+				
+			<table>
+			<br/>
+			<table class="table">
+				<thead>
+					<tr>
+						<th><%=etiqueta_categoria%></th>
+						<th>Formato</th>
+						<th>Tamaño Referencial</th>
+					</tr>
+				</thead>
+				<tbody class="itemTR table"></tbody>
+			</table>
 		</script>
 
 		<script type="text/template" id="template_CatalogoDatosTRItemView">
 			<td><%=categoria%></td>
 			<td><div class="list formatos"></div></td>
 			<td><%=tamagno%></td>
-
 		</script>
 
 		<!-- template_CatalogoDatosFormatoItemView -->
 		<script type="text/template" id="template_CatalogoDatosFormatoItemView">
-			<a class="<%=tipo%>" href="<%=url%>">....</a>
+			<a class="<%=tipo%> download" href="<%=url%>">....</a>
 		</script>
 
 
 
-		<!-- TEMPLATES CATALOGO VISUALIZADORES -->
+		<!-- ---------------------------------- TEMPLATES CATALOGO VISUALIZADORES ------------------------------ -->
 
-		<!-- template_CatalogoVisualizadoresListView -->
-		<script type="text/template" id="template_CatalogoVisualizadoresListView">
-		<div class="row">
-			<div class="col-lg-3 col-12 col-sm-12 sidebar"></div>
-			<div class="col-lg-9 col-12 col-sm-12">
-				<ul class="list-unstyled list visualizadores"></ul>
-			</div>
-		</div>	
+		<!-- template CatalogoVisualizadoresListView -->
+		<script type="text/template" id="template_CatalogoVisualizadoresMainView">
+			<div class="row">
+				<div class="col-lg-3 col-12 col-sm-12 sidebarViz"></div>
+				<div class="col-lg-9 col-12 col-sm-12">
+					<ul class="list-unstyled list visualizadores"></ul>
+				</div>
+			</div>	
 		</script>
 
-		<!-- template_CatalogoVisualizadoresCategoriaView -->
+		<!-- template CatalogoVisualizadoresCategoriaView -->
 		<script type="text/template" id="template_CatalogoVisualizadoresCategoriaView">
-		<h3>  <%=titulo%>   </h3>
+			<h3 id="<%=slug%>">  <%=titulo%>   </h3>
 			<div class="row  list visualizador"></div>
 		</script>
 
-		<!-- template_viewsCatalogoVisualizadoresItemView -->
-		<script type="text/template" id="template_viewsCatalogoVisualizadoresItemView">
+		<!-- template viewsCatalogoVisualizadoresItemView -->
+		<script type="text/template" id="template_CatalogoVisualizadoresItemView">
 			<a href="<%=url%>" target='_blank' class="thumbnail">
-				<img class="thumbnails img-responsive" src="<%=thumbnails%>"/>
+				<img class="thumbnails img-responsive viz" src="<%=thumbnails%>"/>
 			</a>
 		<br/>
-			<a href="#" title="<%=nombre%>" alt="<%=url%>" class="windowIframe"><%=nombre%></a>
+			<a href="<%=url%>" target='_blank' title="<%=nombre%>" alt="<%=url%>" class="windowIframe viz"><%=nombre%></a>
 		</script>
 
-		<!-- SIDEBAR -->
+
+		<!-- ---------------------------- TEMPLATES SIDEBAR  CATALOGO DE DATOS ---------------------------------------------------------------------- -->
 		<script type="text/template" id="template_SideBarView">
 			<br/>
-			<ul class="nav bs-sidenav navex"></ul>
+			<div class="accordion" id="accordion<%=tab%>"></div>
 		</script>
 
 		<script type="text/template" id="template_SideBarItemView">
-			<a title="<%=tema%>" alt="<%=tema%>" class="liMain"  href="#">  <%=tema%></a>
-			<ul class="nav secundario"></ul>
+			 <div class="accordion-heading">
+
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<%=tab%>" 
+						href="#collapse<%=slug%>" onclick="window.location.href='#<%=slug%>'"> 
+						<span class="badge pull-right"><%=count%></span>
+					<%=tema%>  
+				</a>
+
+			</div>
+			<div id="collapse<%=slug%>" class="accordion-body collapse">
+					  <div class="accordion-inner">
+					  		<ul class="nav"></ul>
+					  </div>
+			</div>
 		</script>
 
-		<!-- template_SideBarTemaView -->
-		<script type="text/template" id="template_SideBarTemaView"
-			<li><a href="#<%=slug%>"><%=titulo%></li></a>
+		<!-- template SideBarTemaView -->
+		<script type="text/template" id="template_SideBarTemaView">
+				<a href="#<%=slug%>"><%=titulo%></a>
 		</script>
 
-<!-- SIDEBAR2 -->
-		<script type="text/template" id="template_SideBarView2">
+
+		<!-- ----------------------------------- SIDEBAR VISUALIZADORES -------------------------------------------------- -->
+		<script type="text/template" id="template_SideBarViewViz">
 			<br/>
 			<div class="bs-sidebar">
-			<ul class="nav bs-sidenav navex"></ul>
+			<ul class="nav bs-sidenav navex panel"></ul>
 			</div>
 		</script>
 
-		<script type="text/template" id="template_SideBarItemView2">
-			<a title="<%=titulo%>" alt="<%=titulo%>"  href="#">  <%=titulo%></a>
+		<script type="text/template" id="template_SideBarItemViewViz">
+			<a title="<%=titulo%>" alt="<%=titulo%>"  href="#<%=slug%>">  <%=titulo%></a>
 		</script>
 
-		<div id="myModal"   class="modal hide fade" tabindex="-1" role="dialog">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3 id="dialog_iframe">Dialog</h3>
-			</div>
-			<div class="modal-body">
-				<iframe src="" style="zoom:0.60" width="99.6%" height="99.6%" frameborder="0"></iframe>
-			</div>
-
-		</div>
+			
 	</body>
-	</html>
+</html>

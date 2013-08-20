@@ -721,12 +721,16 @@ hr{
       font-weight: bolder;
     }
 
-
+  @media (min-width: 768px) and (max-width: 1980px) {
+     .accordion{
+        width: 230px;
+      }
+  }
   .panel {
     background-color: #F6F6F1
   }
   #img_footer{
-  background: url('../img/mineduc/Satellite.png') no-repeat ;
+  background: url('http://127.0.0.1/GitHub/DataMineduc/img/mineduc/Satellite.png') no-repeat ;
   z-index: 0;  
   }
   .accordion-inner{
@@ -736,18 +740,6 @@ hr{
   .accordion-heading{
    background-color: #f6f6f1 ;
   }
-
-
-  .accordion.affix {
-        top: 0;
-       /* width: 100%*/
-    }
-   
-   .accordion a.activo{
-      font-weight: bolder;
-    }
-
-
-.panel {
-  background-color: #F6F6F1 !important;
-}
+ .panel {
+    background-color: #f6f6f1 !important;
+ }

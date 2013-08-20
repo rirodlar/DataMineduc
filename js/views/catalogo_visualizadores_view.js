@@ -1,4 +1,4 @@
-App.views.CatalogoVisualizadoresListView = Backbone.View.extend(
+App.views.CatalogoVisualizadoresMainView = Backbone.View.extend(
 /** @lends CatalogoVisualizadoresListView.prototype */
 {	
 	/**
@@ -10,15 +10,16 @@ App.views.CatalogoVisualizadoresListView = Backbone.View.extend(
 	* CatalogoVisualizadoresListView genera el template respectivo
 	*/
 	initialize : function() {
-		this.template = _.template($("#template_CatalogoVisualizadoresListView").html())
+		this.template = _.template($("#template_CatalogoVisualizadoresMainView").html())
 
-		this.sideBarView = new App.views.SideBarView2({collection:this.collection});
+		this.sideBarView = new App.views.SideBarViewViz({collection:this.collection});
 		
-		this.listenTo(this.collection, "change", this.render);
+		//this.listenTo(this.collection, "change", this.render);
 		this.listenTo(this.collection, "sync", this.render);
 
 
 		this.render()
+		
 	},
 	/**
 	* Presenta información en elemento respectivo ($el)
@@ -28,8 +29,12 @@ App.views.CatalogoVisualizadoresListView = Backbone.View.extend(
 	render: function() {
 		this.$el.html(this.template());
 
-		this.$el.find(".sidebar").html(this.sideBarView.$el);
-		 var $list = this.$el.find(".list.visualizadores");
+		this.$el.find(".sidebarViz").html(this.sideBarView.$el);
+		//etElement() para establecer el valor de el, y así asegurarnos de que se actualizan correctamente tanto view.el como view.$el, además de encargarse de hacer de nuevo la delegación de eventos en el nuevo elemento DOM enlazado.
+		// La siguiente instruccion es necesaria para evitar que se desasocien los elementos delegados en la vista sideBarView al llamarse al ejecutarse realizarse el render en máas de una ocasión
+		this.sideBarView.setElement(this.$('.sidebarViz')).render();
+
+		var $list = this.$el.find(".list.visualizadores");
 
 		 this.collection.each(function(item) {
 		 	var itemView = new App.views.CatalogoVisualizadoresCategoriaView({model: item});
@@ -70,7 +75,7 @@ App.views.CatalogoVisualizadoresCategoriaView = Backbone.View.extend(
 	*/
 	render: function() {
 		var data = this.model.toJSON();
-		
+		data.slug = App.utils.make_slug(data.titulo);
 		this.$el.html(this.template(data));
 
 
@@ -102,7 +107,7 @@ App.views.CatalogoVisualizadoresItemView = Backbone.View.extend({
 	* CatalogoVisualizadoresItemView genera el template respectivo
 	*/
 	initialize : function() {
-		this.template = _.template($("#template_viewsCatalogoVisualizadoresItemView").html())
+		this.template = _.template($("#template_CatalogoVisualizadoresItemView").html())
 		this.render()
 	},
 	events: {
@@ -115,13 +120,13 @@ App.views.CatalogoVisualizadoresItemView = Backbone.View.extend({
 	*/
 	openIframe: function(e){
 
-		var frameSrc = $(e.target).attr("alt");
-		var title = $(e.target).attr("title");
+		// var frameSrc = $(e.target).attr("alt");
+		// var title = $(e.target).attr("title");
 		
-		 $('iframe').attr("src",frameSrc);
-		 $("#dialog_iframe").text(title);
+		//  $('iframe').attr("src",frameSrc);
+		//  $("#dialog_iframe").text(title);
 		
-	    $('#myModal').modal({show:true})
+	 //    $('#myModal').modal({show:true})
 	},
 	/**
 	* Presenta información en elemento respectivo ($el)

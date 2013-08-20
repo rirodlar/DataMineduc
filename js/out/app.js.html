@@ -1,4 +1,31 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: app.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
 * @namespace 
 * @property {object} collections - Colecciones de entidades (Clases e instancias).	
 * @property {object} models - Modelos
@@ -22,61 +49,16 @@ App.utils = {
     * Crear SLUG para generar los ID de los elementos del SIDEBAR y los titulos de los elementos de los catalogos
     */
   make_slug:function(str){
-  		console.log(str);
 	    str = str.toLowerCase();
 	    str = str.replace(/[^a-z0-9]+/g, '-');
 	    str = str.replace(/^-|-$/g, '');
 	    return str;
-	},
-	getTabActual:function(){
-		return $("#tabs").find("li.active").children().text();
 	}
 
 };
 
 
 $().ready(function() {
-
-	/**LINK DESCARGAS*/
-	$('.maincontent').on('click', 'a.download', function() {
-
-			var tabActual = App.utils.getTabActual();
-			var tipo = $(this).attr("class").split(" ")[0]
-			var tr_Seleccionado = $(this).parent().parent().parent().parent();
-			var anio =  tr_Seleccionado.children().eq(0).html();
-			var titulo = tr_Seleccionado.parent().parent().parent().parent().children().first("div").find("h3").text();
-			var tema = tr_Seleccionado.parent().parent().parent().parent().parent().find("h2").text();
-			var path = "/Descarga/CatalogoDatos"+"/"+tabActual+"/"+tema+"/"+titulo+"/"+anio+"/"+tipo
-			
-			_gaq.push(["_trackPageview", path]);
-
-			
-	});
-
-	$('.maincontent').on('click', '.viz', function() {
-
-		//console.log("/url/CatalogoVisualizadores/");
-		var tema = $(this).parent().parent().parent().find("h3").text();
-		var nombre = $(this).text();
-		var path = "/url/CatalogoVisualizadores/"+tema+"/"+nombre
-		console.log("/url/CatalogoVisualizadores/"+tema+"/"+nombre)
-
-		_gaq.push(["_trackPageview", path]);
-			
-	});
-	/**IDENTIFICAR EL TABS */
-	$('.maincontent').on('click', '.nav-tabs', function(e) {
-  			console.log( App.utils.make_slug(e.target.text));
-			_gaq.push(['_trackPageview',  "/CatalogoDatos/"+App.utils.make_slug(e.target.text)]);
-			console.log("/CatalogoDatos/"+App.utils.make_slug(e.target.text))
-	});
-
-	// $('#tabs a').click(function (e) {
-		
- //  		e.preventDefault()
- //  		$(this).tab('show')
-	// })
-	
 	/**
 	*  Inicializar las colecciones de datos ( json interno)
 	*/
@@ -125,14 +107,13 @@ App.views.DataMineducAppView = Backbone.View.extend(
 	initialize : function() {
 		/** Template Vista Principal */
 		this.template = _.template($("#template_MainView").html());
-		/**Inicializar el menu de secciones*/
+		
 		App.views.menuSeccionesView = new App.views.MenuSeccionesView();
 
 		App.views.catalogoDatosListViewEdEscolar  = new App.views.CatalogoDatosMainView({collection:App.collections.coleccionDatosEdEscolar,tab:1});
 		App.views.catalogoDatosListViewEdSuperior = new App.views.CatalogoDatosMainView({collection:App.collections.coleccionDatosEdSuperior,tab:2});
 		App.views.catalogoDatosListViewEdParvularia = new App.views.CatalogoDatosMainView({collection:App.collections.coleccionDatosEdParvularia,tab:3});
 		App.views.catalogoVisualizadoresMainView = new App.views.CatalogoVisualizadoresMainView({collection:App.collections.coleccionVisualizadores});
-    	/**Escucha los eventos del menu secciones*/
     	this.listenTo(App.views.menuSeccionesView, "catalogo:selectDatos", this.showCatalogoDatos);
 		this.listenTo(App.views.menuSeccionesView, "catalogo:selectVisualizadores", this.showCatalogoVisualizadores);
 
@@ -152,15 +133,14 @@ App.views.DataMineducAppView = Backbone.View.extend(
 		this.$el.find("div.subseccion.educacion_superior").html(App.views.catalogoDatosListViewEdSuperior.$el);
 		this.$el.find("div.subseccion.educacion_parvularia").html(App.views.catalogoDatosListViewEdParvularia.$el);
 		this.$el.find("div.subseccion.visualizadores").html(App.views.catalogoVisualizadoresMainView.$el);
-		/**ocultar el catalogo de visualizadores*/
-		this.$el.find(".catalogo_visualizadores").hide()
+
+		this.$el.find(".catalogo_visualizadores").hide() //ocultar el catalogo de visualizadores
 		return this;
 	},
 	/**
 	* Muestra el catalogo de datos, ocultar el catalogo de visualizadores
 	*/
 	showCatalogoDatos : function() {
-		console.log("showCatalogoDatos");
 		this.$el.find(".seccion.catalogo_datos").show()
 		this.$el.find(".seccion.catalogo_visualizadores").hide()
 		App.views.menuSeccionesView.setDatos();
@@ -169,7 +149,6 @@ App.views.DataMineducAppView = Backbone.View.extend(
 	* Muestra el catalogo de visualizadores y oculta el catalogo de datos
 	*/
 	showCatalogoVisualizadores : function() {
-		console.log("showCatalogoVisualizadores");
 		this.$el.find(".seccion.catalogo_datos").hide()
 		this.$el.find(".seccion.catalogo_visualizadores").show()
 		App.views.menuSeccionesView.setVisualizadores();
@@ -179,3 +158,26 @@ App.views.DataMineducAppView = Backbone.View.extend(
 });
 
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="MainView.html">MainView</a></li></ul><h3>Namespaces</h3><ul><li><a href="window.App.html">App</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon Aug 19 2013 15:22:51 GMT-0400 (CLT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
